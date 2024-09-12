@@ -2,35 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Sederhana</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Sort Ganjil Genap</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .list {
+            width: 40%;
+        }
+        .list h3 {
+            text-align: center;
+        }
+        .result {
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div class="calculator">
-        <input type="text" id="display" disabled>
-        <div class="buttons">
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="appendNumber(7)">7</button>
-            <button onclick="appendNumber(8)">8</button>
-            <button onclick="appendNumber(9)">9</button>
-            <button onclick="setOperator('+')">+</button>
+    <h1>Sort Bilangan Ganjil dan Genap</h1>
+    <input type="text" id="inputNumbers" placeholder="Masukkan angka, pisahkan dengan koma">
+    <button onclick="sortNumbers()">Sort</button>
 
-            <button onclick="appendNumber(4)">4</button>
-            <button onclick="appendNumber(5)">5</button>
-            <button onclick="appendNumber(6)">6</button>
-            <button onclick="setOperator('-')">-</button>
-
-            <button onclick="appendNumber(1)">1</button>
-            <button onclick="appendNumber(2)">2</button>
-            <button onclick="appendNumber(3)">3</button>
-            <button onclick="setOperator('*')">*</button>
-
-            <button onclick="appendNumber(0)">0</button>
-            <button onclick="setOperator('/')">/</button>
-            <button onclick="calculateResult()">=</button>
+    <div class="container">
+        <div class="list">
+            <h3>Ganjil</h3>
+            <div id="oddNumbers" class="result"></div>
+        </div>
+        <div class="list">
+            <h3>Genap</h3>
+            <div id="evenNumbers" class="result"></div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function sortNumbers() {
+            // Ambil input dari pengguna dan ubah menjadi array
+            const input = document.getElementById('inputNumbers').value;
+            const numbers = input.split(',').map(num => parseInt(num.trim()));
+
+            // Pisahkan bilangan ganjil dan genap
+            const oddNumbers = numbers.filter(num => num % 2 !== 0);
+            const evenNumbers = numbers.filter(num => num % 2 === 0);
+
+            // Tampilkan hasil
+            document.getElementById('oddNumbers').textContent = oddNumbers.join(', ');
+            document.getElementById('evenNumbers').textContent = evenNumbers.join(', ');
+        }
+    </script>
 </body>
 </html>
